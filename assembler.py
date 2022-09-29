@@ -6,7 +6,6 @@ from PIL import Image
 import os
 import random
 import json
-import ipfsupload
 
 
 
@@ -98,7 +97,7 @@ def assemble(_traits, _id):
         # save the nft
         nft = {'ID': _id, 'File': file}
     metadataBuilder(_traits, _id, file)
-    print(ipfsupload.ipfsUpload(file))
+    ##print(ipfsupload.ipfsUpload(file))
     im.save(file)
     return nft
 
@@ -116,6 +115,7 @@ def metadataBuilder(_traits, _id, _file):
         json.dump(meta, outfile)
     
 
+
 def main(_base):
     base = _base
     layers = set_up_dicts(base)
@@ -126,5 +126,5 @@ def main(_base):
 
 
 if __name__ == '__main__':
-    main('bithoppers\hoppers')
+    main('hoppers')
 
