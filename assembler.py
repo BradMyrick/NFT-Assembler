@@ -86,7 +86,7 @@ def traitPicker(_layers):
 def assemble(_traits, _id):
     # write traits to a json file named meta
     file = "finished" + '\\' + str(_id)+".png"
-    im = PIL.Image.new('RGBA', (1000, 1000), (255, 255, 255, 0))
+    im = PIL.Image.new('RGBA', (1000, 1000), (255, 255, 255, 0)) ## 4002x3000 for unicorns
     for trait in _traits:
         # get a random image from the trait folder
         img = _traits[trait]
@@ -97,9 +97,8 @@ def assemble(_traits, _id):
         # save the nft
         nft = {'ID': _id, 'File': file}
     metadataBuilder(_traits, _id, file)
-    ##print(ipfsupload.ipfsUpload(file))
     im.save(file)
-    return nft
+    print(nft)
 
 
 def metadataBuilder(_traits, _id, _file):
@@ -116,13 +115,11 @@ def metadataBuilder(_traits, _id, _file):
     
 
 
-def main(_base):
-    base = _base
+def main(base):
     layers = set_up_dicts(base)
-    print(layers)
     for i in range(10):
         traits = traitPicker(layers)
-        print(assemble(traits, i))
+        assemble(traits, i)
 
 
 if __name__ == '__main__':
